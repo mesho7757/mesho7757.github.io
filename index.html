@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16080e">
+<title>For Lofa — My Moon</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=Great+Vibes&display=swap');
+:root {
+  --ink:#2a1019; --wine:#6d1629; --deep:#16080e; --rose:#b94a61; --paper:#fff8ee;
+  --gold:#d9b36a; --soft:#f5d9dc;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--deep)}
+body{margin:0;background:var(--deep);color:#fff8f4;font-family:'DM Sans',sans-serif;overflow-x:hidden}
+button{font:inherit}
+.scene{position:relative;min-height:100vh;overflow:hidden}
+#intro{display:grid;place-items:center;text-align:center;background:
+ radial-gradient(circle at 50% 35%,rgba(153,32,60,.28),transparent 42%),
+ radial-gradient(circle at 20% 80%,rgba(207,109,121,.13),transparent 30%),
+ linear-gradient(145deg,#12060b,#2b0b16 55%,#0e0509)}
+.intro-inner{position:relative;z-index:5;padding:12vh 24px 10vh}
+.eyebrow{font-size:.75rem;letter-spacing:.34em;text-transform:uppercase;opacity:.7;margin-bottom:18px}
+h1{font-family:'Great Vibes',cursive;font-size:clamp(4rem,13vw,9rem);font-weight:400;line-height:.9;margin:0 0 16px}
+.intro-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,4vw,2.5rem);opacity:.9}
+.scroll-hint{margin-top:70px;opacity:.65;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;animation:bob 2s ease-in-out infinite}
+.scroll-hint span{display:block;font-size:1.5rem;margin-top:10px}
+@keyframes bob{50%{transform:translateY(8px);opacity:.9}}
+.flower-field,.petals{position:absolute;inset:0;pointer-events:none}
+.flower{position:absolute;pointer-events:auto;cursor:pointer;filter:drop-shadow(0 8px 16px rgba(0,0,0,.25));transition:transform .3s}
+.flower:hover{transform:scale(1.12) rotate(5deg)}
+.tulip{width:34px;height:55px;border-radius:55% 55% 45% 45%;background:linear-gradient(90deg,#8d1933,#d14b65,#751326);clip-path:polygon(0 0,32% 18%,50% 0,68% 18%,100% 0,90% 68%,67% 100%,33% 100%,10% 68%)}
+.stem{position:absolute;width:3px;height:75px;background:#47634d;left:15px;top:43px;transform:rotate(5deg);transform-origin:top}
+.lotus{font-size:36px;line-height:1;filter:drop-shadow(0 0 8px rgba(255,184,199,.25))}
+.sparkle{position:absolute;width:4px;height:4px;border-radius:50%;background:#f9d9dd;box-shadow:0 0 12px 3px rgba(255,206,214,.45);animation:twinkle 2.4s infinite}
+@keyframes twinkle{50%{opacity:.2;transform:scale(.5)}}
+
+#gift{min-height:170vh;background:
+ radial-gradient(ellipse at 50% 22%,rgba(130,22,46,.35),transparent 44%),
+ linear-gradient(#1a080f,#260b15 48%,#12060b);}
+.gift-intro{position:relative;z-index:3;text-align:center;padding:12vh 20px 0}
+.gift-intro h2,.final-title{font-family:'Great Vibes',cursive;font-size:clamp(3rem,8vw,6rem);font-weight:400;margin:.2em 0}
+.gift-intro p{max-width:650px;margin:auto;color:#f2dfe1;line-height:1.8}
+.envelope-stage{height:110vh;display:grid;place-items:center;position:relative;perspective:1200px}
+.envelope-wrap{position:relative;width:min(78vw,520px);height:min(54vw,360px);min-height:240px;transform-style:preserve-3d}
+.envelope{position:absolute;inset:0;background:linear-gradient(145deg,#a31e3c,#76152a);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.5);overflow:visible}
+.envelope:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 49.5%,rgba(50,0,10,.16) 50%,transparent 50.5%),linear-gradient(45deg,transparent 49.5%,rgba(255,255,255,.07) 50%,transparent 50.5%);border-radius:inherit}
+.flap{position:absolute;top:-1px;left:0;width:100%;height:64%;background:linear-gradient(150deg,#b72a49,#84152d);clip-path:polygon(0 0,100% 0,50% 92%);transform-origin:50% 0;z-index:5;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.letter{position:absolute;z-index:3;left:7%;width:86%;bottom:4%;height:82%;background:var(--paper);color:var(--ink);border-radius:4px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:34px 34px 40px;overflow:hidden;transform:translateY(12%) scale(.96);transition:transform 1.25s cubic-bezier(.18,.86,.25,1),height 1.25s ease}
+.envelope.open .letter{transform:translateY(-32%) scale(1);height:145%}
+.letter::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 10%,rgba(185,74,97,.07),transparent 30%),repeating-linear-gradient(0deg,transparent 0 31px,rgba(90,40,40,.04) 32px)}
+.letter-inner{position:relative;height:100%;overflow:hidden}
+.letter-kicker{font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:#9a5360;margin-bottom:15px}
+.letter h3{font-family:'Great Vibes',cursive;font-size:3rem;font-weight:400;color:#701a2f;margin:0 0 12px}
+.letter p{font-family:'Cormorant Garamond',serif;font-size:1.18rem;line-height:1.65;margin:0 0 24px}
+.seal{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:86px;height:86px;border-radius:50%;border:4px solid rgba(255,218,188,.22);background:radial-gradient(circle at 35% 28%,#d85469,#751327 65%);box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 2px 8px rgba(255,255,255,.15);z-index:8;cursor:pointer;display:grid;place-items:center;transition:transform .25s,opacity .5s}
+.seal:hover{transform:translate(-50%,-50%) scale(1.08)}
+.seal span{font-size:34px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.3))}
+.envelope.open .seal{opacity:0;pointer-events:none;transform:translate(-50%,-50%) scale(1.7) rotate(30deg)}
+.seal-note{position:absolute;top:calc(50% + 65px);left:50%;transform:translateX(-50%);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;opacity:.7;z-index:9;white-space:nowrap}
+.flower-click{position:absolute;z-index:10;cursor:pointer}
+.photo-float{position:absolute;width:110px;height:145px;padding:7px;background:#fff;box-shadow:0 15px 35px rgba(0,0,0,.35);transform:rotate(-8deg);z-index:2;transition:.4s;opacity:.9}
+.photo-float img{width:100%;height:100%;object-fit:cover}
+.photo-float:hover{transform:rotate(0) scale(1.08);opacity:1;z-index:10}
+
+#burn{position:fixed;inset:0;background:#0a0305;z-index:100;display:none;place-items:center;overflow:hidden}
+#burn.active{display:grid;animation:fadeIn .4s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.burn-letter{position:absolute;width:min(75vw,520px);height:55vh;background:var(--paper);color:var(--ink);border-radius:4px;box-shadow:0 0 70px rgba(255,72,20,.3);padding:35px;transform:rotate(-2deg);overflow:hidden}
+.burn-letter:after{content:'';position:absolute;inset:-20%;background:radial-gradient(circle at 40% 80%,#ffb100,transparent 14%),radial-gradient(circle at 65% 70%,#ff4b19,transparent 17%),radial-gradient(circle at 50% 90%,#ffb000,transparent 13%);mix-blend-mode:multiply;opacity:0;animation:burn 2.2s forwards}
+@keyframes burn{30%{opacity:.4}100%{opacity:1;transform:scale(1.35);filter:brightness(.45)}}
+.tear-line{position:absolute;inset:0;background:repeating-linear-gradient(80deg,transparent 0 55px,rgba(100,20,20,.18) 56px 58px);z-index:4;opacity:.9;animation:tear .9s forwards}
+@keyframes tear{to{transform:translateX(30px) rotate(4deg);clip-path:polygon(0 0,100% 0,88% 30%,100% 60%,80% 100%,0 100%)}}
+.water{position:absolute;bottom:-10vh;width:140%;height:42vh;border-radius:50% 50% 0 0;background:linear-gradient(#4c5f70,#182c38 70%,#07131a);box-shadow:0 -15px 50px rgba(100,180,210,.15);transform:translateY(100%);animation:waterRise 2s 1.4s forwards}
+@keyframes waterRise{to{transform:translateY(0)}}
+.sun{position:absolute;width:140px;height:140px;border-radius:50%;background:#ffc45a;box-shadow:0 0 70px 20px rgba(255,190,75,.5);top:12%;left:50%;transform:translateX(-50%) translateY(-160px);animation:sunrise 2.6s 1.8s forwards}
+@keyframes sunrise{to{transform:translateX(-50%) translateY(0)}}
+.moon{position:absolute;right:14%;top:19%;width:120px;height:120px;border-radius:50%;background:#f4e5ca;box-shadow:0 0 55px rgba(255,238,205,.35);transform:translateY(-40px) scale(.3);opacity:0;animation:moonIn 1.7s 4.1s forwards}
+.moon:after{content:'';position:absolute;width:120px;height:120px;border-radius:50%;background:#10242e;left:35px;top:-5px}
+@keyframes moonIn{to{opacity:1;transform:translateY(0) scale(1)}}
+.word-rain{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.word{position:absolute;color:#f5eee4;font-family:'Cormorant Garamond',serif;font-size:1.05rem;opacity:.9;animation:fall 2.8s cubic-bezier(.2,.8,.4,1) forwards}
+@keyframes fall{from{transform:translateY(-12vh) rotate(var(--r));opacity:0}15%{opacity:1}to{transform:translateY(72vh) rotate(var(--r));opacity:.1}}
+.word-rise{position:absolute;color:#fff2d6;font-family:'Cormorant Garamond',serif;font-size:1rem;opacity:0;animation:rise 2.1s 2.6s forwards}
+@keyframes rise{from{transform:translateY(40vh);opacity:0}30%{opacity:1}to{transform:translateY(-22vh);opacity:0}}
+
+#final{background:
+ radial-gradient(circle at 50% 0,rgba(117,28,50,.35),transparent 38%),
+ linear-gradient(180deg,#210b14,#0e0509);padding:13vh 20px 16vh;display:none;min-height:100vh}
+#final.visible{display:block;animation:finalIn 1.5s ease}
+@keyframes finalIn{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:none}}
+.final-wrap{max-width:860px;margin:auto;position:relative}
+.final-title{text-align:center;margin-bottom:10px}
+.final-note{text-align:center;max-width:650px;margin:0 auto 55px;color:#e7cdd0;line-height:1.8}
+.final-paper{background:var(--paper);color:var(--ink);padding:clamp(28px,6vw,65px);box-shadow:0 30px 100px rgba(0,0,0,.45);border-radius:6px;position:relative}
+.final-paper:before{content:'✦';position:absolute;top:18px;right:24px;color:#b94a61;font-size:24px}
+.final-paper p{font-family:'Cormorant Garamond',serif;font-size:1.24rem;line-height:1.72;margin:0 0 27px}
+.signature{font-family:'Great Vibes',cursive;font-size:3.5rem;color:#741a30;text-align:right;margin-top:35px}
+.memories{margin-top:90px}
+.memories h3{font-family:'Great Vibes',cursive;font-size:3rem;font-weight:400;text-align:center}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start}
+.polaroid{background:#fff;padding:10px 10px 26px;box-shadow:0 18px 40px rgba(0,0,0,.35);transform:rotate(var(--rot));transition:.4s}
+.polaroid:hover{transform:rotate(0) translateY(-8px) scale(1.03)}
+.polaroid img{width:100%;height:280px;object-fit:cover;display:block}
+.polaroid figcaption{color:#5c2632;text-align:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;margin-top:8px}
+.sticker-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:45px}
+.sticker{width:120px;transition:.4s;cursor:pointer;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35))}
+.sticker:hover{transform:translateY(-10px) rotate(6deg) scale(1.08)}
+.sticker img{width:100%;display:block}
+.sun-moon{display:flex;justify-content:center;align-items:center;gap:18px;margin:55px 0 0;color:#e9cfd2;font-family:'Great Vibes',cursive;font-size:2.1rem}
+.sun-icon,.moon-icon{font-family:serif;font-size:3rem}
+.controls{position:fixed;right:16px;bottom:16px;z-index:150;display:flex;gap:8px}
+.control{border:1px solid rgba(255,255,255,.16);background:rgba(24,8,14,.75);backdrop-filter:blur(12px);color:#fff;border-radius:999px;padding:10px 14px;cursor:pointer;font-size:.8rem}
+#flowerBurst{position:fixed;inset:0;pointer-events:none;z-index:200}
+.burst{position:absolute;font-size:24px;animation:burst 900ms ease-out forwards}
+@keyframes burst{from{transform:translate(-50%,-50%) scale(.2);opacity:0}20%{opacity:1}to{transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(160deg) scale(1.1);opacity:0}}
+@media(max-width:700px){
+ .envelope-wrap{width:88vw;height:60vw;min-height:220px}
+ .letter{padding:22px 20px}
+ .letter h3{font-size:2.4rem}
+ .letter p,.final-paper p{font-size:1.08rem}
+ .gallery{grid-template-columns:1fr 1fr}
+ .polaroid img{height:220px}
+ .photo-float{width:75px;height:100px}
+ .moon{right:7%;width:85px;height:85px}
+ .moon:after{width:85px;height:85px;left:25px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<section id="intro" class="scene">
+  <div class="flower-field" aria-hidden="true"></div>
+  <div class="intro-inner">
+    <div class="eyebrow">a little piece of my heart</div>
+    <h1>Hello, my love.</h1>
+    <div class="intro-sub">Hi, Lofa. I have something for you.</div>
+    <div class="scroll-hint">keep going<span>↓</span></div>
+  </div>
+</section>
+
+<section id="gift" class="scene">
+  <div class="flower-field" aria-hidden="true"></div>
+  <div class="gift-intro">
+    <div class="eyebrow">for my moon</div>
+    <h2>Something I wanted you to keep.</h2>
+    <p>There are some things I can say out loud, and some things I wanted to leave somewhere you could return to whenever you need them.</p>
+  </div>
+
+  <div class="photo-float" style="left:4%;top:33%;--r:-10deg;transform:rotate(-10deg)"><img src="assets/lofa-sticker.jpg" alt=""></div>
+  <div class="photo-float" style="right:4%;top:48%;--r:9deg;transform:rotate(9deg)"><img src="assets/lofa-04.jpg" alt=""></div>
+
+  <div class="envelope-stage" id="envelopeStage">
+    <div class="envelope-wrap">
+      <div class="envelope" id="envelope">
+        <div class="letter" id="letter">
+          <div class="letter-inner">
+            <div class="letter-kicker">a letter for my moon</div>
+            <h3>My beautiful goddess</h3>
+            <p>Pull me gently upward...</p>
+            <p style="opacity:.55;font-size:.95rem">And please don't speed-run this part, you menace.</p>
+          </div>
+        </div>
+        <div class="flap"></div>
+        <button class="seal" id="seal" aria-label="Open the envelope"><span>✿</span></button>
+        <div class="seal-note">tap the little lotus</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="final">
+  <div class="flower-field" aria-hidden="true"></div>
+  <div class="final-wrap">
+    <div class="eyebrow" style="text-align:center">the words came back to you</div>
+    <div class="final-title">My moon, read this whenever you need it.</div>
+    <p class="final-note">The envelope may have been dramatic. The letter wasn't. Every word below is yours.</p>
+    <article class="final-paper">
+      <div id="letterText"></div>
+      <div class="signature">And I’d choose you again.</div>
+    </article>
+
+    <div class="memories">
+      <h3>A few little pieces of you</h3>
+      <div class="gallery">
+        <figure class="polaroid" style="--rot:-3deg"><img src="assets/lofa-01.jpg" alt="A memory of Lofa"><figcaption>my moon</figcaption></figure>
+        <figure class="polaroid" style="--rot:2deg"><img src="assets/lofa-03.jpg" alt="A memory of Lofa"><figcaption>my favorite face</figcaption></figure>
+        <figure class="polaroid" style="--rot:-1deg"><img src="assets/lofa-05.jpg" alt="A memory of Lofa"><figcaption>still unfairly pretty</figcaption></figure>
+        <figure class="polaroid" style="--rot:3deg"><img src="assets/lofa-06.jpg" alt="A memory of Lofa"><figcaption>يا قمر</figcaption></figure>
+        <figure class="polaroid" style="--rot:-4deg"><img src="assets/lofa-02.jpg" alt="A memory of Lofa"><figcaption>the goddess</figcaption></figure>
+        <figure class="polaroid" style="--rot:2deg"><img src="assets/chat-memory.jpg" alt="A little chat memory"><figcaption>the day you scared me by accident</figcaption></figure>
+      </div>
+      <div class="sticker-row">
+        <div class="sticker" title="You win. Again."><img src="assets/lofa-sticker.jpg" alt="Lofa sticker"></div>
+        <div class="sticker" title="Me being dramatic"><img src="assets/cute-tear-sticker.jpg" alt="Cute crying sticker"></div>
+        <div class="sticker" title="Us being ridiculous"><img src="assets/cute-heart-sticker.jpg" alt="Cute heart sticker"></div>
+      </div>
+      <div class="sun-moon"><span class="sun-icon">☀</span><span>my sun &nbsp;♡&nbsp; my moon</span><span class="moon-icon">☾</span></div>
+    </div>
+  </div>
+</section>
+
+<div id="burn" aria-hidden="true">
+  <div class="burn-letter">
+    <div class="letter-kicker">too fast, my moon</div>
+    <h3>Oh no...</h3>
+    <p>You really did not know how to take it slow, did you?</p>
+    <p>Fine. Let the sun fix it.</p>
+    <div class="tear-line"></div>
+  </div>
+  <div class="word-rain" id="wordRain"></div>
+  <div class="water"></div>
+  <div class="sun"></div>
+  <div id="wordRise"></div>
+  <div class="moon"></div>
+</div>
+
+<div id="flowerBurst"></div>
+<div class="controls">
+  <button class="control" id="musicBtn">♫ music on</button>
+  <button class="control" id="restartBtn">↻ start over</button>
+</div>
+
+<script>
+const paragraphs = ["Maybe I won’t always know the right thing to say or exactly what you need to hear when you’re having a hard day so I wanted to leave this here for you something you can come back to whenever life feels too loud whenever your thoughts start running faster than you can keep up with them whenever everything feels heavier than it should or whenever you start wondering if things are ever going to get better you don’t have to be happy all the time my love you don’t have to pretend that you’re okay just because someone asks it’s okay to be drained it’s okay to be quiet it’s okay to need space to disappear into your own little world for a while and take your time putting yourself back together you don’t owe anyone a perfect version of yourself and you certainly don’t owe that version to me I love the soft parts of you but I love the messy parts too I love the quiet girl who gets lost in her thoughts the silly girl who makes me laugh without even trying the stubborn girl who thinks she can carry everything by herself and the beautiful woman underneath all of it I love every version of you that exists between those moments you never have to clean yourself up emotionally before you come to me", "You’re always worrying about me sometimes so much that you forget to worry about yourself and I’ve always found that one of the most beautiful things about you you have this heart that instinctively reaches for the people you love you notice little things you remember things people forget you care in ways you probably don’t even realize you’re showing and you make people feel like they matter but my beautiful goddess you deserve to be looked after too you deserve days where nobody asks anything from you days where you can simply exist and let someone else carry the weight for a while you deserve to have someone remind you that you don’t have to solve your entire life tonight so let me be that person sometimes", "And I want you to know something else too I think I understand you a little more now sometimes when life has been weighing on you I know you don’t always have the energy to be the sweetest version of yourself or to know exactly what to say or to give affection the way you normally would and I don’t want you to ever think that you have to force yourself to be okay just so I can feel loved I know now that sometimes when you seem distant there can be so much happening inside you that I simply cannot see from the outside and I don’t want you to feel like you have to hide that from me or become someone else just to make me comfortable if you’re tired then be tired if you’re overwhelmed then be overwhelmed if you need silence then let the silence be there I would rather know the real you in a difficult moment than have you pretend to be okay for my sake", "And that doesn’t make me love you any less it makes me want to understand you more because loving someone isn’t only loving them when they have endless energy to give you it’s also learning how to sit beside them when they have almost nothing left and still looking at them like they are the most beautiful person in the room and my love even on the days where you don’t have much left to give I still see you I still see the girl I fell in love with I still see my beautiful goddess I still see my moon and I still know exactly how lucky I am to have you", "If you ever come back to these words while you’re hurting I want you to remember that there is someone in this world who looks at you and sees so much more than the things you criticize about yourself I see a woman who is genuinely remarkable someone beautiful in a way that goes far beyond her face someone whose presence has a warmth to it that I can’t properly explain you are my beautiful goddess the god of all girlfriends somehow because I genuinely don’t know how you manage to make being loved by you feel like such a privilege and your beauty is almost unfair sometimes", "Your eyes especially there is something about them that makes me understand why people write entire poems about eyes they have this strange kind of magic to them like they don’t just look at me they pull me somewhere like Medusa except instead of turning me to stone you make me forget what I was doing in the first place sometimes I catch myself looking at you for too long and realize I’ve completely lost track of whatever we were talking about or what was happening in the show we’re watching it’s just that that happened last time and I missed that feeling and when I get lost in your eyes I swear I can see pieces of my future I see myself coming home from work exhausted opening the door and finding you there I see your face being the first thing that makes the day feel worth it I see a beautiful house that feels like ours three little kids running around making a mess you complaining about something ridiculous while I’m secretly smiling because I’d give anything to hear you complain for the rest of my life", "I see ordinary days with you and somehow they don’t look ordinary at all I think that’s what I love most about you you make me want the simple things not some perfect fantasy where nothing ever goes wrong but a real life a life where we get tired where we argue where we have difficult seasons where one of us has to hold the other together sometimes a life where we grow old enough to look back and realize we survived every version of ourselves together I want you through the thick of it I want you when life is beautiful and when it is brutally unfair I want the late nights the quiet mornings the stupid arguments the laughter that makes our stomachs hurt the days where neither of us feels like doing anything and all the little moments that nobody else would think are important", "Because life without you has tasted worse than it ever should have and I don’t mean that I need you to make my life meaningful I mean that having you in it has shown me a kind of sweetness I don’t want to forget you have added colors to parts of my life that used to feel dull and I don’t think you even realize how much your existence can change the atmosphere around me sometimes just hearing your voice can make a day feel different just seeing your face can make me feel like something inside me has finally settled and that is something I never want to take for granted", "If life ever takes us somewhere far away from everything we know somewhere where it’s just you and me trying to build something of our own I think I’d still be the happiest man alive I don’t care how different the road looks as long as when I turn around you’re still walking beside me because if the whole world became unfamiliar but I still had you I think I’d learn to call that place home you are my moon يا قمر the person I can look at after the longest day and somehow feel like I’ve come back to somewhere safe", "And I hope you know how deeply I admire you not just because you’re gorgeous although you really are not just because your smile can completely ruin my ability to act normal not just because I could stare at your face for hours and still find something new to love about it I admire your mind your opinions your heart your humor the way you can make an ordinary conversation feel like something I’ll remember the way you’re willing to experience things instead of always standing on the sidelines the way you love people with your whole heart the way you can be ridiculous one second and incredibly thoughtful the next the way you make me feel like I’m talking to my favorite person and my favorite woman at the same time", "And lately I’ve been noticing something about you that makes me especially proud of you I can see more color in you lately I can see you taking more care of yourself I can see you getting things done even when you have every reason to feel overwhelmed I see you doing your homework I see you handling your paperwork I see you being productive and putting things in order and I see the effort behind all of it and maybe some of those things feel small to you but they aren’t small to me because I know how much energy it can take to simply get yourself moving when your mind feels heavy and seeing you still choose to get up and do what you need to do makes me genuinely proud of you", "I’m proud of the woman you are becoming and I’m proud of the woman you already are I’m proud of the way you’ve been taking care of yourself and I’m proud of how considerate you’ve been with me even while you have your own things weighing on you that says so much about your heart because even when you’re carrying things of your own you still find little ways to care for the people you love and that is something I will always admire about you you have this beautiful ability to keep moving forward without making a show of it and I notice it I notice you", "You have this rare combination of gentleness and strength that I don’t think you give yourself enough credit for you are soft without being weak you are caring without losing your fire you are beautiful without having to try to be and you are loved without having to earn it especially by me", "And I want you to know that when I tell you that you matter to me I don’t only mean it on the days where you’re affectionate and sweet and everything feels easy I mean it when you’re exhausted too I mean it when you’re quiet I mean it when your replies are shorter than usual I mean it when you need your own space I mean it when your mind is somewhere else and I mean it even when the reason your heart is heavy happens to be because of something between us because my love for you isn’t something that disappears the moment things become difficult", "I want to be someone you can come back to when the world feels too heavy not someone you have to perform happiness for I want to know the real you the tired you the confused you the frustrated you the quiet you the happy you the ridiculous you the beautiful you all of her I want all of you because I didn’t fall in love with some perfect version of you I fell in love with you", "So whenever you feel like you’re falling behind whenever you think you should have figured everything out by now whenever you look at yourself and only see everything you think is wrong with you come back here look at yourself through my eyes for a moment see the girl I see my sweet little girl with the beautiful eyes and the beautiful heart the woman I can talk to for hours and still somehow want another hour the girl whose hand I want to hold while we walk through whatever life decides to put in front of us", "And if I was ever the reason you needed to come back to these words even if I was the reason your heart felt heavy that day I still want you to know that my heart is always going to have a place for you I don’t want this letter to be something you read only when everything between us is perfect I want it to be something you read when things are difficult too because I want you to remember that even when we don’t understand each other perfectly even when life gets between us even when one of us is struggling to give the other what they need there is still something underneath all of that that I don’t want you to forget", "You matter to me more than I could ever fit into one letter and I want to keep learning you I want to keep discovering the little things that make you smile the things that make you feel safe the things that make you feel loved the things that make your eyes light up I want to know the little details that everyone else overlooks because you are not someone I ever want to stop paying attention to", "So please my love be a little kinder to yourself rest when you need to cry when you need to be quiet when you need to take your time you don’t have to have everything figured out tonight and you never have to become someone else to deserve being loved by me just be you my beautiful goddess my moon my favorite woman", "And if I’m lucky enough to spend this life with you through every beautiful season and every ugly one I’ll consider myself one of the luckiest men alive because I don’t want only the beautiful chapters with you I want the whole story I want the days where we have everything figured out and the days where we have absolutely no idea what we’re doing I want the days where we laugh until we can’t breathe and the days where we sit quietly beside each other because neither of us has the words I want to watch you grow and change and become even more of the woman you’re meant to be and I want you to watch me do the same", "If life asks me to walk somewhere difficult with you I will want to walk it with you if it takes us somewhere completely unfamiliar I will learn that place with you if it asks us to start over somewhere far away from everything we know then let it because if I get to look beside me and see you there I think I could make a home anywhere", "Because out of everything this life could have given me somehow it gave me you and I don’t know what the future is going to look like but I know that when I picture the future I keep finding you in it I find you in the home I imagine I find you in the quiet mornings I find you in the late nights I find you in the family I dream about I find you in the person I want beside me when everything goes right and when everything goes wrong", "And maybe that is what loving you has become for me not just wanting you in the beautiful moments but wanting to be there for every version of life with you through thick and thin through every season through every change through every version of ourselves and if the road ever becomes difficult and you start wondering whether you are still worth loving I want you to come back here and remember that you never had to be perfect for me to see something extraordinary in you", "You are my beautiful goddess my moon يا قمر my favorite woman my favorite person and the woman whose hand I want to hold while life happens around us", "And I’d choose you again"];
+const letterText = document.getElementById('letterText');
+const envelope = document.getElementById('envelope');
+const seal = document.getElementById('seal');
+const burn = document.getElementById('burn');
+const final = document.getElementById('final');
+const flowerBurst = document.getElementById('flowerBurst');
+let opened = false, burned = false, audioCtx = null, musicOn = false, musicNodes = [];
+
+function makeFlowers(containerSelector) {
+  document.querySelectorAll(containerSelector).forEach(container => {
+    for(let i=0;i<18;i++) {
+      const el=document.createElement('div');
+      el.className='flower';
+      el.style.left=(Math.random()*94+3)+'%';
+      el.style.top=(Math.random()*92+2)+'%';
+      el.style.opacity=(.18+Math.random()*.42);
+      el.style.transform=`scale(${.65+Math.random()*.8}) rotate(${-20+Math.random()*40}deg)`;
+      if(Math.random()>.38) {
+        el.innerHTML='<div class="tulip"></div><div class="stem"></div>';
+      } else {
+        el.className='flower lotus';
+        el.textContent='✿';
+      }
+      el.addEventListener('click', e => burst(e.clientX,e.clientY));
+      container.appendChild(el);
+    }
+    for(let i=0;i<16;i++) {
+      const s=document.createElement('i');
+      s.className='sparkle';
+      s.style.left=(Math.random()*100)+'%'; s.style.top=(Math.random()*100)+'%';
+      s.style.animationDelay=(Math.random()*2.5)+'s';
+      container.appendChild(s);
+    }
+  });
+}
+makeFlowers('.flower-field');
+
+function burst(x,y) {
+  const symbols=['✿','♡','✦','❀','♥'];
+  for(let i=0;i<8;i++) {
+    const b=document.createElement('span');
+    b.className='burst'; b.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+    b.style.left=x+'px'; b.style.top=y+'px';
+    b.style.setProperty('--x',((-90+Math.random()*180).toFixed(0))+'px');
+    b.style.setProperty('--y',((-110+Math.random()*220).toFixed(0))+'px');
+    flowerBurst.appendChild(b);
+    setTimeout(()=>b.remove(),1000);
+  }
+}
+
+function startMusic() {
+  if(musicOn) return;
+  audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)();
+  const master=audioCtx.createGain(); master.gain.value=.045; master.connect(audioCtx.destination);
+  const notes=[261.63,329.63,392.00,493.88,392.00,329.63];
+  notes.forEach((f,i)=>{
+    const o=audioCtx.createOscillator(), g=audioCtx.createGain();
+    o.type='sine'; o.frequency.value=f;
+    g.gain.value=0; g.gain.setTargetAtTime(.22/(i+2),audioCtx.currentTime+i*.55,.15);
+    g.gain.setTargetAtTime(0,audioCtx.currentTime+i*.55+.42,.2);
+    o.connect(g); g.connect(master); o.start(audioCtx.currentTime+i*.55); o.stop(audioCtx.currentTime+i*.55+1.3);
+  });
+  // A soft sustained drone keeps the transition feeling continuous.
+  [130.81,164.81].forEach(f=>{
+    const o=audioCtx.createOscillator(),g=audioCtx.createGain();
+    o.type='triangle'; o.frequency.value=f; g.gain.value=.015; o.connect(g); g.connect(master); o.start();
+    musicNodes.push(o,g);
+  });
+  musicNodes.push(master); musicOn=true; document.getElementById('musicBtn').textContent='♫ music on';
+}
+
+function stopMusic() {
+  if(!audioCtx) return;
+  musicNodes.forEach(n=>{try{n.stop?.()}catch(e){} try{n.disconnect?.()}catch(e){}});
+  musicNodes=[]; musicOn=false; document.getElementById('musicBtn').textContent='♫ music off';
+}
+
+seal.addEventListener('click', () => {
+  if(opened) return;
+  opened=true; envelope.classList.add('open'); startMusic();
+  setTimeout(()=>document.querySelector('.seal-note').textContent='take your time, my moon',500);
+});
+
+function renderFinalLetter() {
+  letterText.innerHTML='';
+  paragraphs.forEach((p,i)=>{
+    const el=document.createElement('p'); el.textContent=p;
+    letterText.appendChild(el);
+  });
+}
+
+let lastY=null,lastT=0;
+window.addEventListener('wheel', e=>{
+  if(!opened || burned) return;
+  const now=performance.now();
+  const velocity=e.deltaY/(now-lastT||16);
+  if(e.deltaY < -28 && velocity < -1.35) triggerBurn();
+  lastT=now;
+},{passive:true});
+
+let touchY=0,touchT=0;
+window.addEventListener('touchstart',e=>{
+  if(!opened||burned) return;
+  touchY=e.touches[0].clientY; touchT=performance.now();
+},{passive:true});
+window.addEventListener('touchmove',e=>{
+  if(!opened||burned) return;
+  const y=e.touches[0].clientY, t=performance.now();
+  const dy=y-touchY, dt=t-touchT;
+  if(dy < -75 && dy/(dt||16) < -1.5) triggerBurn();
+  touchY=y; touchT=t;
+},{passive:true});
+
+function triggerBurn() {
+  if(burned) return;
+  burned=true; burn.classList.add('active'); burn.setAttribute('aria-hidden','false');
+  const rain=document.getElementById('wordRain');
+  const rise=document.getElementById('wordRise');
+  const words=letterText.innerText.split(/\s+/).filter(Boolean);
+  for(let i=0;i<65;i++) {
+    const w=document.createElement('span'); w.className='word';
+    w.textContent=words[Math.floor(Math.random()*words.length)]||'love';
+    w.style.left=(Math.random()*96)+'%'; w.style.top=(-10-Math.random()*15)+'vh';
+    w.style.setProperty('--r',((-25+Math.random()*50).toFixed(0))+'deg');
+    w.style.animationDelay=(Math.random()*1.6)+'s';
+    rain.appendChild(w);
+  }
+  for(let i=0;i<34;i++) {
+    const w=document.createElement('span'); w.className='word-rise';
+    w.textContent=words[Math.floor(Math.random()*words.length)]||'love';
+    w.style.left=(Math.random()*90+5)+'%'; w.style.top=(60+Math.random()*25)+'%';
+    w.style.animationDelay=(2.2+Math.random()*1.2)+'s';
+    rise.appendChild(w);
+  }
+  setTimeout(()=>{final.classList.add('visible'); final.scrollIntoView({behavior:'smooth'})},6500);
+  setTimeout(()=>{burn.style.display='none'; renderFinalLetter()},7000);
+}
+
+document.getElementById('musicBtn').addEventListener('click',()=>{
+  if(musicOn) stopMusic(); else startMusic();
+});
+document.getElementById('restartBtn').addEventListener('click',()=>location.reload());
+renderFinalLetter();
+</script>
+</body>
+</html>
